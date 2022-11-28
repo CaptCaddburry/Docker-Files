@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  minecraft:
+    image: itzg/minecraft-bedrock-server
+    ports:
+      - "19132:19132/udp"
+    environment:
+      EULA: "TRUE"
+      VERSION: LATEST
+      SERVER_NAME: "CaddNation Server"
+      LEVEL_NAME: "CaddNation Server"
+      GAMEMODE: "survival"
+      DIFFICULTY: "hard"
+      ALLOW-CHEATS: "FALSE"
+      DEFAULT-PLAYER-PERMISSION-LEVEL: "member"
+      OPS: "2533274949923911" #CaptCaddburry: 2533274949923911
+    volumes:
+      - ./minecraft:/data
