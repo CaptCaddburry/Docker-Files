@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+  caddnation_site:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - caddnation_db
+    environment:
+      WORDPRESS_DB_HOST: caddnation_db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: "Password1"
+      WORDPRESS_DB_NAME: caddnation_site
+    restart: always
+    volumes:
+      - ./caddnation/wp-content:/var/www/html/wp-content/
+  caddnation_db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: caddnation_site
+      MYSQL_ROOT_PASSWORD: "Password1"
+    restart: always
+    volumes:
+      - ./caddnation/mysql:/var/lib/mysql/
+  caddsmeow_site:
+    image: wordpress:latest
+    ports:
+      - "8081:80"
+    depends_on:
+      - caddsmeow_db
+    environment:
+      WORDPRESS_DB_HOST: caddsmeow_db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: "Password2"
+      WORDPRESS_DB_NAME: caddsmeow_site
+    restart: always
+    volumes:
+      - ./caddsmeow/wp-content:/var/www/html/wp-content/
+  caddsmeow_db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: caddsmeow_site
+      MYSQL_ROOT_PASSWORD: "Password2"
+    restart: always
+    volumes:
+      - ./caddsmeow/mysql:/var/lib/mysql/
